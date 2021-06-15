@@ -1,0 +1,9 @@
+= render partial: "notice", object: notice
+
+%h1 Editing question
+%p
+  = link_to "Questions", questions_path
+  &#183;
+  = link_to @question.question, @question
+    
+= render 'form'

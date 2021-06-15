@@ -1,0 +1,22 @@
+= render partial: "notice", object: notice
+
+%p
+  = link_to "Questions", questions_path
+
+.mb-3
+  %h2
+    = @question.question
+    %span{class: "#{status_class(@question.status)}"}
+      = @question.status
+    
+.mb-3
+  - @question.tag_list.each do |tag|
+    #{link_to tag, tag_path(tag),{class: "btn btn-outline-secondary btn-sm"}}
+  
+.mb-3
+  = @question.answer
+  
+.mb-3
+  Source: #{link_to @question.source_name, @question.source_link}
+
+= link_to 'Edit', edit_question_path(@question), {class: "btn btn-primary"}

@@ -1,0 +1,21 @@
+.mb-3{style: "margin-top: 20px;"}
+
+  %form.d-flex{ action: "/search", method: "get" }
+    %input.form-control.input-lg.me-2{"aria-label" => "Search", name: 'q', placeholder: "Search questions", type: "search"}/
+    %button.btn.btn-outline-success{type: "submit", style: "width: 125px;"}
+      <i class="bi bi-search"></i> Search
+    
+- if @results.present?
+  - @results.each do |question|
+    %div{style: "margin-top: 30px; font-weight: bold;"}
+      = question.question
+    %div
+      = question.answer
+    %div{style: "margin-top: 10px;"}
+      Source: #{link_to question.source_name, question.source_link}
+      
+    - if question.tag_list.present?
+      %div{style: "margin-top: 10px;"}
+        - question.tag_list.each do |tag|
+          #{link_to tag, tag_path(tag),{class: "btn btn-outline-secondary btn-sm"}}
+    %hr

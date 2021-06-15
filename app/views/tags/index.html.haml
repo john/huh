@@ -1,0 +1,7 @@
+= render partial: "notice", object: notice
+
+%h1
+  Tags
+  
+- @tags.each do |tag|
+  = link_to tag.name, tag_path(tag.name),{class: "btn btn-outline-secondary btn-sm"}

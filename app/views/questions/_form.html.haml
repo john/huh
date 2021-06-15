@@ -1,0 +1,32 @@
+= form_for @question do |f|
+  - if @question.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@question.errors.count, "error")} prohibited this question from being saved:"
+      %ul
+        - @question.errors.full_messages.each do |message|
+          %li= message
+
+  .mb-3
+    = f.label :question, class: "form-label"
+    = f.text_field :question, class: "form-control"
+  .mb-3
+    = f.label :answer, class: "form-label"
+    = f.text_area :answer, class: "form-control"
+  .mb-3
+    = f.label :internal_notes, class: "form-label"
+    = f.text_area :internal_notes, class: "form-control"
+  .mb-3
+    = f.label :source_name, class: "form-label"
+    = f.text_field :source_name, class: "form-control"
+  .mb-3
+    = f.label :source_link, class: "form-label"
+    = f.text_field :source_link, class: "form-control"
+  .mb-3
+    = f.label :tag_list, "Tags, comma seperated", class: "form-label"
+    = f.text_field :tag_list, class: "form-control", value: @question.tag_list.join(", ")
+  .mb-3
+    = f.label :status, class: "form-label"
+    //= f.text_field :status, class: "form-control"
+    = f.select :status, options_for_select(Question.statuses.map {|key, value| [key.titleize, key]}, f.object.status), {}, {class: "form-select"}
+  .mb-3
+    = f.submit 'Save', class: "btn btn-primary"

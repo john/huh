@@ -1,0 +1,12 @@
+= render partial: "notice", object: notice
+
+%h3
+  = link_to "Tags", tags_path
+  
+%h1
+  = @tag.name
+  
+- @tag.taggings.each do |tagging|
+  - question = Question.find(tagging.taggable_id)
+  %br
+  = link_to question.question, question

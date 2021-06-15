@@ -1,0 +1,57 @@
+= render partial: "notice", object: notice
+
+%h1
+  Questions
+  &nbsp;
+  = link_to 'New Question', new_question_path, type: 'button', class: 'btn btn-outline-secondary btn-sm'
+  
+:css
+  td{ padding: 0 5px 0 5px; }
+  
+%table{style: "margin: 15px 0 10px 0;"}
+  %tr
+    %td
+      %a.btn.btn-sm.btn-primary{type: "button", href: "/questions"} All
+    %td
+      %a.btn.btn-sm.btn-success{type: "button", href: "/questions?view=active"} Active
+    %td
+      %a.btn.btn-sm.btn-warning{type: "button", href: "/questions?view=pending"} Pending
+    %td
+      %a.btn.btn-sm.btn-secondary{type: "button", href: "/questions?view=archived"} Archived
+  %tr
+    %td{style: "height: 5px;"}
+    %td
+    %td
+    %td
+    %td
+  %tr
+    %td{style: "background-color: #{(!params.has_key?(:view) || params[:view] == 'all') ? 'darkgrey' : ''}; height: 5px;"}
+    %td{style: "background-color: #{params[:view] == 'active' ? 'darkgrey' : ''};"}
+    %td{style: "background-color: #{params[:view] == 'pending' ? 'darkgrey' : ''};"}
+    %td{style: "background-color: #{params[:view] == 'archived' ? 'darkgrey' : ''};"}
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th
+      %th
+
+  %tbody
+    - @questions.each do |question|
+      %tr
+        %td
+          %div{style: "font-weight: bold;"}
+            
+            
+            = link_to question.question, question
+          %div
+            = truncate(question.answer, length: 100, escape: false)
+          
+        %td{style: "width: 200px"}
+          &nbsp;&nbsp;
+          = link_to '<i class="bi bi-pencil"></i>'.html_safe, edit_question_path(question), class: "btn btn-outline-secondary btn-sm"
+          &nbsp;
+          = link_to '<i class="bi bi-trash"></i>'.html_safe, question, method: :delete, data: { confirm: 'Truly?' }, class: "btn btn-outline-secondary btn-sm"
+          &nbsp;
+          %span{class: "#{status_class(question.status)}"}
+            = question.status

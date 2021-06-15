@@ -1,0 +1,69 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Huh?
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    
+    %link{rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css", crossorigin: "anonymous"}
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+    
+    :css
+      body {
+        padding-top: 5rem;
+        
+      }
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+    
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    
+  %body
+    %nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
+      .container-fluid
+        %a.navbar-brand{href: "/"}
+          Huh?
+        %button.navbar-toggler{"aria-controls" => "navbarsExampleDefault", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarsExampleDefault", "data-bs-toggle" => "collapse", type: "button"}
+          %span.navbar-toggler-icon
+        #navbarsExampleDefault.collapse.navbar-collapse
+          %ul.navbar-nav.me-auto.mb-2.mb-md-0
+            %li.nav-item
+              %a.nav-link.active{"aria-current" => "page", href: "/"} Home
+              %li.nav-item
+                = link_to 'Questions', questions_path, class: "nav-link"
+              %li.nav-item
+                = link_to 'Tags', tags_path, class: "nav-link"
+              //   %a.nav-link.disabled{"aria-disabled" => "true", href: "#", tabindex: "-1"} Disabled
+              // %li.nav-item.dropdown
+              //   %a#dropdown01.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", href: "#"} Dropdown
+              //   %ul.dropdown-menu{"aria-labelledby" => "dropdown01"}
+              //     %li
+              //       %a.dropdown-item{href: "#"} Action
+              //     %li
+              //       %a.dropdown-item{href: "#"} Another action
+              //     %li
+              //       %a.dropdown-item{href: "#"} Something else here
+          - unless @home
+            %form.d-flex{ action: "/search", method: "get" }
+              %input.form-control.me-2{"aria-label" => "Search", name: 'q', placeholder: "Search", type: "search"}/
+              %button.btn.btn-outline-success{type: "submit"} Search
+            
+    %main.container
+      = yield
+    
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    %script{src: "https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js", crossorigin: "anonymous"}
