@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.0.0'
 
 gem 'acts-as-taggable-on'
+gem 'devise'
 gem 'haml-rails'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'

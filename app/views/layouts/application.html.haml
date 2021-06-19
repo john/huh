@@ -10,7 +10,9 @@
     %link{rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css", crossorigin: "anonymous"}
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+    %link{:href => "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css", :rel => "stylesheet"}/
+    
+    %script{:crossorigin => "anonymous", :integrity => "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=", :src => "https://code.jquery.com/jquery-3.6.0.min.js"}
     
     :css
       body {
@@ -43,10 +45,14 @@
           %ul.navbar-nav.me-auto.mb-2.mb-md-0
             %li.nav-item
               %a.nav-link.active{"aria-current" => "page", href: "/"} Home
-              %li.nav-item
-                = link_to 'Questions', questions_path, class: "nav-link"
-              %li.nav-item
-                = link_to 'Tags', tags_path, class: "nav-link"
+              
+              - if user_signed_in?
+                %li.nav-item
+                  = link_to 'Questions', questions_path, class: "nav-link"
+                %li.nav-item
+                  = link_to 'Tags', tags_path, class: "nav-link"
+                  
+              
               //   %a.nav-link.disabled{"aria-disabled" => "true", href: "#", tabindex: "-1"} Disabled
               // %li.nav-item.dropdown
               //   %a#dropdown01.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", href: "#"} Dropdown
@@ -57,6 +63,17 @@
               //       %a.dropdown-item{href: "#"} Another action
               //     %li
               //       %a.dropdown-item{href: "#"} Something else here
+          %ul.navbar-nav.float-end
+            - if user_signed_in?
+              .navbar-text
+                Hello #{current_user.name}!
+              %li.nav-item{style: "margin-right: 20px;"}
+                = link_to 'Log out', destroy_user_session_path, method: :delete, class: "nav-link"
+            - else
+              %li.nav-item
+                = link_to 'Log in', new_user_session_path, class: "nav-link"
+              %li.nav-item{style: "margin-right: 20px;"}
+                = link_to 'Sign up', new_user_registration_path, class: "nav-link"
           - unless @home
             %form.d-flex{ action: "/search", method: "get" }
               %input.form-control.me-2{"aria-label" => "Search", name: 'q', placeholder: "Search", type: "search"}/

@@ -16,5 +16,9 @@ module ApplicationHelper
         when "archived" then "badge bg-secondary"
     end
   end
+  
+  def summarize(body, length)
+    return simple_format(truncate(body.gsub(/<\/?.*?>/,  ""), :length => length)).gsub(/<\/?.*?>/,  "")
+  end
 
 end

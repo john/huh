@@ -10,7 +10,6 @@ psql postgres -d huh_development
 \d tags
 
 
-
 # TODO
 Right now a question can have a status of 'unanswered' even with an answer, an you can make a question active if it has no answer. fix.
 

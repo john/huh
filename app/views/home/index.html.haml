@@ -1,7 +1,7 @@
 .mb-3{style: "margin-top: 20px;"}
 
   %form.d-flex{ action: "/search", method: "get" }
-    %input.form-control.input-lg.me-2{"aria-label" => "Search", name: 'q', placeholder: "Search questions", type: "search"}/
+    %input.form-control.input-lg.me-2{"aria-label" => "Search", name: 'q', placeholder: "Search questions", type: "search", value: params[:q]}/
     %button.btn.btn-outline-success{type: "submit", style: "width: 125px;"}
       <i class="bi bi-search"></i> Search
     
@@ -10,9 +10,19 @@
     %div{style: "margin-top: 30px; font-weight: bold;"}
       = question.question
     %div
-      = question.answer
-    %div{style: "margin-top: 10px;"}
-      Source: #{link_to question.source_name, question.source_link}
+      - if question.answer.length > 225
+        = truncate(question.answer, length: 225, separator: ' ')
+        = link_to 'read more', "#", onclick: "$(this).parent().html('#{escape_javascript(question.answer.gsub("\n",  "<br />"))}'); return false;"
+      - else
+        = question.answer
+      
+    - if question.source_link.present?
+      %div{style: "margin-top: 10px;"}
+        Source:
+        - if question.source_name.present?
+          = link_to question.source_name, question.source_link, target: "_blank"
+        - else
+          = link_to truncate(question.source_link, length: 50), question.source_link, target: "_blank"
       
     - if question.tag_list.present?
       %div{style: "margin-top: 10px;"}

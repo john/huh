@@ -4,8 +4,9 @@
   = link_to "Questions", questions_path
 
 .mb-3
-  %h2
+  %h5
     = @question.question
+    &nbsp;
     %span{class: "#{status_class(@question.status)}"}
       = @question.status
     
