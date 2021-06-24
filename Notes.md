@@ -33,3 +33,6 @@ docker-compose run web rails generate paper_trail:install [--with-changes]
 
 # Map postgres local to container:
 psql -h localhost -p 5432 -d huh_development -U postgres --password
+
+# Deploy
+Deployment is via aws-rails-provisioner. Note that the Docker build has to happen on an Intel architecture, deploying from Apple silicon will not work

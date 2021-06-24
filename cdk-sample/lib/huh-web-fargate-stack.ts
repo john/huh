@@ -23,7 +23,7 @@ export class HuhWebFargateStack extends cdk.Stack {
         const cluster = props.cluster;
 
         const asset = new ecr_assets.DockerImageAsset(this, 'ImageAssetBuild', {
-            directory: '/Users/john/repos/huh/.'
+            directory: '/home/ubuntu/environment/huh/.'
         });
 
         // compute repo name from asset image

@@ -9,6 +9,7 @@ Run apk add --no-cache --update build-base \
                             sqlite-dev \
                             nodejs \
                             nodejs-npm \
+                            ruby-nokogiri \
                             tzdata && \
 gem update --system && gem install bundler
 
