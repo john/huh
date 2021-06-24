@@ -1,0 +1,19 @@
+# To bootstrap CDK stacks:
+# aws-rails-provisioner build
+
+version: '0'
+
+vpc:
+  max_azs: 2
+  enable_dns: true
+services:
+  huh_web:
+    source_path: .
+    fargate:
+      desired_count: 1
+      memory: 512
+      cpu: 256
+      public: true
+      envs:
+        PORT: 80
+        RAILS_LOG_TO_STDOUT: true
