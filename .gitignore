@@ -7,6 +7,13 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore local .env (used with dotenv)
+/.env
+
+# Ignore build CDK assets
+/config/cdk-sample/
+/config/cdk-sample/*
+
 # Ignore local data files
 /db/seeds_local.rb
 

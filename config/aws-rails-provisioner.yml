@@ -1,0 +1,15 @@
+# To bootstrap CDK stacks:
+# aws-rails-provisioner build
+
+version: '0'
+
+vpc:
+  enable_dns: true
+services:
+  huh_web:
+    source_path: ../
+    fargate:
+      public: true
+      task:
+        environment:
+          RAILS_LOG_TO_STDOUT: true

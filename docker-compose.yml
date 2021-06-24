@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: password
+  web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+          APP_ENV: development
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    working_dir: /huh
+    volumes:
+      - .:/huh
+    environment:
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: password

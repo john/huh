@@ -31,6 +31,7 @@ class QuestionsController < ApplicationController
   # POST /questions or /questions.json
   def create
     @question = Question.new(question_params)
+    @question.added_by = current_user.id
 
     respond_to do |format|
       if @question.save
@@ -45,6 +46,8 @@ class QuestionsController < ApplicationController
 
   # PATCH/PUT /questions/1 or /questions/1.json
   def update
+    @question.edited_by = current_user.id
+
     respond_to do |format|
       if @question.update(question_params)
         format.html { redirect_to @question, notice: "Question was successfully updated." }
@@ -73,6 +76,6 @@ class QuestionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def question_params
-      params.require(:question).permit(:question, :answer, :internal_notes, :source_name, :source_link, :status, :tag_list)
+      params.require(:question).permit(:question, :answer, :internal_notes, :source_name, :source_link, :status, :tag_list, :added_by, :edited_by)
     end
 end

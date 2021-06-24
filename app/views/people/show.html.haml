@@ -1,0 +1,11 @@
+= render partial: "notice", object: notice
+
+%h1
+  = @user.name
+  
+Has answered these questions:
+%br
+
+- @user.questions.each do |question|
+  %br
+  = link_to question.question, question

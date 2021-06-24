@@ -1,4 +1,8 @@
-%h2 Log in
+= render partial: "notice", object: notice
+
+%h2
+  Log in
+
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
   .mb-3
     = f.label :email, class: "form-label"
