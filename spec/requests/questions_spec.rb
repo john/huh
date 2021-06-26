@@ -41,7 +41,14 @@ RSpec.describe "/questions", type: :request do
   end
 
   describe "GET /new" do
-    it "renders a successful response" do
+    it "renders a successful response if authed" do
+      pending
+      get new_question_url
+      expect(response).to be_successful
+    end
+    
+    it "renders a successful response if authed" do
+      pending
       get new_question_url
       expect(response).to be_successful
     end
