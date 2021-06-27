@@ -17,3 +17,4 @@ services:
       envs:
         PORT: 80
         RAILS_LOG_TO_STDOUT: true
+        RAILS_ENV: production

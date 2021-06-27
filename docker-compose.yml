@@ -15,11 +15,17 @@ services:
           APP_ENV: development
     ports:
       - 3000:3000
+      - 80:80
     depends_on:
       - db
     working_dir: /huh
     volumes:
       - .:/huh
     environment:
-      DATABASE_USERNAME: postgres
-      DATABASE_PASSWORD: password
+      RAILS_ENV: ${RAILS_ENV}
+      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+      PORT: ${PORT}
+      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      

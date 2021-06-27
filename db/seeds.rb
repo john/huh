@@ -12,7 +12,7 @@ questions = Question.create([{
   source_name: "",
   source_link: "https://www.youtube.com/watch?v=DO7RkzuJLoI",
   status: "active"
-},{
+}, {
   question: "What is the airspeed velocity of an unladen swallow?​",
   answer: "An African or European Swallow?",
   internal_notes: "",
