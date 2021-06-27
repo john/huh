@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :question do
-    name { "MyString" }
-    description { "MyText" }
+    question { "The Question" }
+    answer { "The Answer" }
+    user { FactoryBot.create(:user) }
   end
 end
