@@ -7,9 +7,9 @@ gem 'acts-as-taggable-on'
 gem 'devise'
 gem 'haml-rails'
 gem 'paper_trail'
-gem 'pg', '~> 1.1'
+gem 'pg', '~> 1.2'
 gem 'puma', '~> 5.0'
-gem 'rails', '~> 6.1.3'
+gem 'rails', '~> 6.1.4'
 gem 'rspec-rails'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.0'
@@ -31,6 +31,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
+  gem 'faker'
   gem 'shoulda-matchers'
 end
 

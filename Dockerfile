@@ -4,6 +4,7 @@ FROM ruby:3.0.1-alpine3.13
 ENV APP_HOME /huh
 ENV RAILS_LOG_TO_STDOUT enabled
 ENV RAILS_SERVE_STATIC_FILES enabled
+ENV BUNDLER_VERSION=2.2.21
 
 # Create directory for the app to be built into
 RUN mkdir $APP_HOME
@@ -20,7 +21,8 @@ Run apk add --no-cache --update build-base \
                             nodejs-npm \
                             ruby-nokogiri \
                             tzdata && \
-gem update --system && gem install bundler
+
+gem update --system && gem install bundler:2.2.21
 RUN npm install -g yarn
 
 # Copy Gemfiles and Javascript library files, and install.
